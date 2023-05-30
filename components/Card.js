@@ -2,7 +2,7 @@ import * as React from "react";
 import { TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 import PropTypes from "prop-types";
 
-const placeholderImage = require("../assets/images/splash.png");
+const placeholderImage = require("../assets/images/splash.png.png");
 
 const propTypes = {
   item: PropTypes.object,

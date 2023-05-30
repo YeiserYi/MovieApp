@@ -1,14 +1,14 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   SafeAreaView,
   TouchableOpacity,
   Image,
   StyleSheet,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import PropTypes from 'prop-types';
-import Colors from '../theme/Colors';
+} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import PropTypes from "prop-types";
+import Colors from "../theme/Colors";
 
 const propTypes = {
   main: PropTypes.bool,
@@ -20,20 +20,21 @@ const defaultProps = {
 class Navbar extends React.PureComponent {
   state = {};
   render() {
-    const {navigation, main} = this.props;
+    const { navigation, main } = this.props;
     return (
       <SafeAreaView>
         {main ? (
           <View style={styles.mainNav}>
             <Image
               style={styles.logo}
-              source={require('../assets/images/factsoft.png')}
+              source={require("../assets/images/favicon.png")}
             />
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Search');
-              }}>
-              <Icon name={'search-outline'} size={30} color={Colors.white} />
+                navigation.navigate("Search");
+              }}
+            >
+              <Icon name={"search-outline"} size={30} color={Colors.white} />
             </TouchableOpacity>
           </View>
         ) : (
@@ -41,8 +42,9 @@ class Navbar extends React.PureComponent {
             <TouchableOpacity
               onPress={() => {
                 navigation.goBack();
-              }}>
-              <Icon name={'chevron-back'} size={40} color={Colors.lightGray} />
+              }}
+            >
+              <Icon name={"chevron-back"} size={40} color={Colors.lightGray} />
             </TouchableOpacity>
           </View>
         )}
@@ -54,10 +56,10 @@ class Navbar extends React.PureComponent {
 const styles = StyleSheet.create({
   mainNav: {
     flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    flexDirection: "row",
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   logo: {
     width: 50,
