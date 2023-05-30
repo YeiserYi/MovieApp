@@ -6,7 +6,6 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
-
 import {
   getPopularMovies,
   getUpcomingMovies,
@@ -15,28 +14,25 @@ import {
   getDocumentaryMovies,
 } from "../services/service";
 import { SliderBox } from "react-native-image-slider-box";
+import react from "react";
+import List from "../components/List";
+import Error from "../components/Error";
 
 const dimentions = Dimensions.get("screen");
-
 const Home = ({ navigation }) => {
-  {
-    /*Hooks para los estados de las categorias */
-  }
   const [moviesImages, setMoviesImages] = useState();
-  const [popularMovies, setPopuarMovies] = useState();
+  const [popularMovies, setPopularMovies] = useState();
   const [popularTv, setPopularTv] = useState();
   const [familyMovies, setFamilyMovies] = useState();
   const [documentaryMovies, setDocumentaryMovies] = useState();
-  {
-    /*Hooks para el manejo de los errores y Carga */
-  }
-  const [error, setError] = useState();
-  const [loaded, setLoaded] = useState();
+
+  const [error, setError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const getData = () => {
     return Promise.all([
-      getPopularMovies(),
       getUpcomingMovies(),
+      getPopularMovies(),
       getPopularTv(),
       getFamilyMovies(),
       getDocumentaryMovies(),
@@ -59,15 +55,15 @@ const Home = ({ navigation }) => {
               "https://image.tmdb.org/t/p/w500" + movie.poster_path
             );
           });
-          // modificando los estados
+
           setMoviesImages(moviesImagesArray);
-          setPopuarMovies(popularMoviesData);
+          setPopularMovies(popularMoviesData);
           setPopularTv(popularTvData);
           setFamilyMovies(familyMoviesData);
           setDocumentaryMovies(documentaryMoviesData);
         }
       )
-      .cath(() => {
+      .catch(() => {
         setError(true);
       })
       .finally(() => {
@@ -76,10 +72,9 @@ const Home = ({ navigation }) => {
   }, []);
 
   return (
-    // todo lo que este dentro del fragmen es lo que se va a retornar (vistas y fragmentos)
-    <React.Fragment>
+    <react.Fragment>
       {/* Upcoming Movies */}
-      {loaded && !Error && (
+      {loaded && !error && (
         <ScrollView>
           {moviesImages && (
             <View style={styles.sliderContainer}>
@@ -88,7 +83,7 @@ const Home = ({ navigation }) => {
                 dotStyle={styles.sliderStyle}
                 sliderBoxHeight={dimentions.height / 1.5}
                 autoplay={true}
-                circleloop={true}
+                circleLoop={true}
               />
             </View>
           )}
@@ -136,7 +131,7 @@ const Home = ({ navigation }) => {
       )}
       {!loaded && <ActivityIndicator size="large" />}
       {error && <Error />}
-    </React.Fragment>
+    </react.Fragment>
   );
 };
 

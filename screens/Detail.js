@@ -12,10 +12,10 @@ import {
 } from "react-native";
 import PlayButton from "../components/PlayButton";
 import StarRating from "react-native-star-rating";
-import { getMovie } from "../services/servicio";
+import { getMovie } from "../services/service";
 import dateFormat from "dateformat";
 
-const splashImage = require("../assets/images/splash.png.png");
+const placeholderImage = require("../assets/images/splash.png");
 const height = Dimensions.get("screen").height;
 
 const Detail = ({ route, navigation }) => {
