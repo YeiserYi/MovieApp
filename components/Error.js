@@ -36,3 +36,5 @@ const styles = StyleSheet.create({
     color: Colors.danger,
   },
 });
+
+export default Error
