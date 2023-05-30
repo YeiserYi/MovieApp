@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const apiUrl = "https://api.themoviedb.org/3";
-//Falta apiKey de Diego
 const apiKey = "4966663cb66931459c3a6e5aa62da69f";
 
-//Obtener Categoria de Peliculas Populares
+// Obtener la categoría de películas populares /GET
 export const getPopularMovies = async () => {
-  const response = await axios.get(`${apiUrl}/movie/popular?${apiKey}`);
-  return response.data.results;
+  const resp = await axios.get(`${apiUrl}/movie/popular?${apiKey}`);
+  return resp.data.results;
 };
+
 //Obtener Categoría próximas en películas / GET
 export const getUpcomingMovies = async () => {
   const resp = await axios.get(`${apiUrl}/movie/upcoming?${apiKey}`);
@@ -37,6 +37,7 @@ export const getDocumentaryMovies = async () => {
   return resp.data.results;
 };
 
+//otros
 //obtener película por id
 export const getMovie = async (id) => {
   const resp = await axios.get(`${apiUrl}/movie/${id}?${apiKey}`);
